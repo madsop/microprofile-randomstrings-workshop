@@ -6,7 +6,7 @@ steps:
     args:
       - "-c"
       - |
-        docker run gcr.io/kaniko-project/executor:latest \
+        docker run gcr.io/kaniko-project/executor:v1.6.0 \
         --dockerfile=Dockerfile \
         --context git://github.com/madsop/microprofile-randomstrings-workshop.git#refs/heads/step6#024de6788e1327e3cf41dc4497cb6fc9ee8bf472 \
         --destination=gcr.io/$PROJECT_ID/randomstrings-quarkusnative \
