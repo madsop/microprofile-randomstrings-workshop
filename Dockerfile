@@ -14,7 +14,7 @@ WORKDIR /build
 RUN native-image $(cat native-image.args) -J-Xmx8g
 
 ## Stage 2 : create the docker final image
-FROM registry.fedoraproject.org/fedora-minimal
+FROM registry.fedoraproject.org/fedora-minimal:34
 WORKDIR /work/
 COPY --from=native-build /build/*-runner /work/application
 EXPOSE 8080
