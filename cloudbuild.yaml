@@ -6,7 +6,7 @@ steps:
     args:
       - "-c"
       - |
-        docker run gcr.io/kaniko-project/executor:latest -v /:/workspace --dockerfile=/workspace/Dockerfile --context dir:///workspace/ -destination=gcr.io/$PROJECT_ID/randomstrings-quarkusnative
+        docker run gcr.io/kaniko-project/executor:latest --dockerfile=Dockerfile --context git://github.com/madsop/microprofile-randomstrings-workshop/tree/step6 -destination=gcr.io/$PROJECT_ID/randomstrings-quarkusnative
   - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
     entrypoint: gcloud
     args:
