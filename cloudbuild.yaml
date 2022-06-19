@@ -6,7 +6,12 @@ steps:
     args:
       - "-c"
       - |
-        docker run gcr.io/kaniko-project/executor:1.6 --dockerfile=Dockerfile --context git://github.com/madsop/microprofile-randomstrings-workshop.git#refs/heads/step6#024de6788e1327e3cf41dc4497cb6fc9ee8bf472 --destination=gcr.io/$PROJECT_ID/randomstrings-quarkusnative
+        docker run gcr.io/kaniko-project/executor:latest \
+        --dockerfile=Dockerfile \
+        --context git://github.com/madsop/microprofile-randomstrings-workshop.git#refs/heads/step6#024de6788e1327e3cf41dc4497cb6fc9ee8bf472 \
+        --destination=gcr.io/$PROJECT_ID/randomstrings-quarkusnative \
+        --cache=true \
+        --cache-ttl=168h
   - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
     entrypoint: gcloud
     args:
