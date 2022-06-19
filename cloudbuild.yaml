@@ -1,6 +1,18 @@
 steps:
+  # Create docker image
   - name: 'gcr.io/cloud-builders/docker'
-    args: ['build', '-t', 'gcr.io/$PROJECT_ID/randomstrings-quarkusnative', '.']
+    entrypoint: 'bash'
+    args:
+      - '-c'
+      - |
+        docker pull gcr.io/$PROJECT_ID/randomstrings-quarkusnative || exit 0
+  - name: 'gcr.io/cloud-builders/docker'
+    entrypoint: "bash"
+    timeout: 1800s
+    args:
+      - "-c"
+      - |
+        docker build -t gcr.io/$PROJECT_ID/randomstrings-quarkusnative .
   # Push the container image to Container Registry
   - name: 'gcr.io/cloud-builders/docker'
     args: [ 'push', 'gcr.io/$PROJECT_ID/randomstrings-quarkusnative' ]
