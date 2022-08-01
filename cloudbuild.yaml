@@ -1,9 +1,9 @@
 steps:
   # Build the container image and push it with Kaniko
-  - name: 'gcr.io/$PROJECT_ID/randomstrings-quarkusnative2:latest'
+  - name: 'gcr.io/$PROJECT_ID/randomstrings-quarkusnative:latest'
     args:
       - --cache=true
-      - --destination=gcr.io/$PROJECT_ID/randomstrings-quarkusnative2:$COMMIT_SHA
+      - --destination=gcr.io/$PROJECT_ID/randomstrings-quarkusnative
     timeout: 1200s
   - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
     entrypoint: gcloud
@@ -12,7 +12,7 @@ steps:
       - 'deploy'
       - 'randomstrings-quarkusnative'
       - '--image'
-      - 'gcr.io/$PROJECT_ID/randomstrings-quarkusnative2:latest'
+      - 'gcr.io/$PROJECT_ID/randomstrings-quarkusnative:latest'
       - '--region'
       - 'europe-north1'
       - '--platform'
