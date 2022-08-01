@@ -1,13 +1,13 @@
 steps:
   # Build the container image and push it with Kaniko
-  - name: 'gcr.io/$PROJECT_ID/randomstrings-quarkusnative:latest'
+  - name: 'gcr.io/$PROJECT_ID/randomstrings-quarkusnative2:latest'
     args:
       - --cache=true
       - --destination=eu.gcr.io/$PROJECT_ID/randomstrings-quarkusnative:$COMMIT_SHA
     timeout: 1200s
   # Push the container image to Container Registry
   - name: 'gcr.io/cloud-builders/docker'
-    args: [ 'push', 'gcr.io/$PROJECT_ID/randomstrings-quarkusnative' ]
+    args: [ 'push', 'gcr.io/$PROJECT_ID/randomstrings-quarkusnative2' ]
   - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
     entrypoint: gcloud
     args:
@@ -15,10 +15,10 @@ steps:
       - 'deploy'
       - 'randomstrings-quarkusnative'
       - '--image'
-      - 'gcr.io/$PROJECT_ID/randomstrings-quarkusnative:latest'
+      - 'gcr.io/$PROJECT_ID/randomstrings-quarkusnative2:latest'
       - '--region'
       - 'europe-north1'
       - '--platform'
       - 'managed'
 timeout: 1200s
-images: ['gcr.io/$PROJECT_ID/randomstrings-quarkusnative']
+images: ['gcr.io/$PROJECT_ID/randomstrings-quarkusnative2']
