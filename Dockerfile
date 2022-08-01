@@ -7,7 +7,7 @@ COPY src /home/app/src
 RUN mvn package -Dquarkus.package.type=native-sources
 
 ## Stage 2: build quarkus-native
-FROM quay.io/quarkus/ubi-quarkus-mandrel:22.1-java11 AS native-build
+FROM quay.io/quarkus/ubi-quarkus-mandrel:22.2-java11 AS native-build
 COPY --chown=quarkus:quarkus --from=maven /home/app/target/native-sources /build
 USER quarkus
 WORKDIR /build
