@@ -1,6 +1,6 @@
 steps:
   # Build the container image and push it with Kaniko
-  - name: 'gcr.io/$PROJECT_ID/randomstrings-quarkusnative:latest'
+  - name: 'gcr.io/kaniko-project/executor:latest'
     args:
       - --cache=true
       - --destination=gcr.io/$PROJECT_ID/randomstrings-quarkusnative
